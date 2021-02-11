@@ -9,6 +9,7 @@ VOOS = VOOS_URL_SERVICO + "voos/"
 
 
 def acessar(url):
+    print("\n")
     print("acessando a url:", url)
 
     response = urllib.request.urlopen(url)
@@ -27,12 +28,14 @@ def voos_is_alive():
 
 def imprimir_voos(voos):
     for VOO in voos:
+        print("\n")
         print("COD: ", VOO["id"])
         print("Data: ", VOO["data"])
-        print("De:", VOO["saida"])
-        print("Para:", VOO["chegada"])
-        print("Vagas", VOO["vagas"])
+        print("De: ", VOO["saida"])
+        print("Para: ", VOO["chegada"])
+        print("Vagas: ", VOO["vagas"])
         print("Preço R$: ", VOO["preco"])
+        
 
 def buscar_voos():
     data = acessar(VOOS)
