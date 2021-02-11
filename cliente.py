@@ -27,14 +27,14 @@ def voos_is_alive():
 
 def imprimir_voos(voos):
     for VOO in voos:
-        print(VOO["id"])
+        print("COD: ", VOO["id"])
         print("Data: ", VOO["data"])
         print("De:", VOO["saida"])
         print("Para:", VOO["chegada"])
         print("Vagas", VOO["vagas"])
-        print("Preço R$", VOO["preco"])
+        print("Preço R$: ", VOO["preco"])
 
-def get_voos():
+def buscar_voos():
     data = acessar(VOOS)
     data = json.loads(data)
 
@@ -48,7 +48,7 @@ if __name__ == "__main__":
             # se estiver ativo
             print("serviço de voos está ativo. Solicitando voos...")
             # imprimir as voos sobre voos
-            voos = get_voos()
+            voos = buscar_voos()
 
             print("\n\n")
             print("###############################################################")
