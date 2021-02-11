@@ -27,9 +27,12 @@ def voos_is_alive():
 
 def imprimir_voos(voos):
     for VOO in voos:
-        print(VOO["data"])
-        print(VOO["titulo"])
-        print("url:", VOO["endereco"])
+        print(VOO["id"])
+        print("Data: ", VOO["data"])
+        print("De:", VOO["saida"])
+        print("Para:", VOO["chegada"])
+        print("Vagas", VOO["vagas"])
+        print("Preço R$", VOO["preco"])
 
 def get_voos():
     data = acessar(VOOS)

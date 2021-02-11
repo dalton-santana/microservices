@@ -5,7 +5,7 @@
             "data": "20/02/2021",
             "saida": "RIO DE JANEIRO - RJ",
             "chegada": "SÃO PAULO - SP",
-            "Vagas": 30,
+            "vagas": 30,
             "preco": 100
         },
         {
@@ -13,7 +13,7 @@
             "data": "21/02/2021",
             "saida": "SALVADOR - BA",
             "chegada": "SÃO PAULO - SP",
-            "Vagas": 40,
+            "vagas": 40,
             "preco": 120
         },
         {
@@ -21,7 +21,7 @@
             "data": "18/02/2021",
             "saida": "RECIFE - PE",
             "chegada": "SALVADOR- BA",
-            "Vagas": 33,
+            "vagas": 33,
             "preco": 40
         }
 
