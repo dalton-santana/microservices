@@ -44,12 +44,12 @@ if __name__ == "__main__":
         if voos_is_alive():
             # se estiver ativo
             print("serviço de voos está ativo. Solicitando voos...")
-            # imprimir as voos sobre jogos eletronicos
+            # imprimir as voos sobre voos
             voos = get_voos()
 
             print("\n\n")
             print("###############################################################")
-            print("#################### JOGOS ELETRÔNICOS ########################")
+            print("#################### VOOS ########################")
             print("###############################################################")
             imprimir_voos(voos)
         # se nao estiver (ativo) informar que o servico estah inativo

@@ -33,22 +33,22 @@ def get_info():
 
 @servico.route("/gravar/", methods=["POST", "GET"])
 def gravar():
-    noticias = request.get_json()
-    if noticias:
+    voos = request.get_json()
+    if voos:
         client = base.Client((BANCO_VOLATIL, 11211))
-        client.set("voos", noticias)
+        client.set("voos", voos)
 
     return "Ok"
 
-# rota que retorna noticias sobre jogos eletronicos
-@servico.route("/noticias/")
+# rota que retorna voos sobre jogos eletronicos
+@servico.route("/voos/")
 def get_voos():
-    resultado = "erro: notícias não inicializadas"
+    resultado = "erro: voos não adicionados"
 
     client = base.Client((BANCO_VOLATIL, 11211))
-    noticias = client.get("voos")
-    if noticias:
-        resultado = noticias
+    voos = client.get("voos")
+    if voos:
+        resultado = voos
 
     return resultado
 
