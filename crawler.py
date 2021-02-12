@@ -2,7 +2,9 @@ import requests
 import json
 from time import sleep
 
+## NECESSÁRIO IDENTIFICAR O ENDERECO DO ARQUIVO JSON
 VOOS = "/home/dalton/Área de Trabalho/Trabalho pos/microservices/lista-voos/voos.json"
+
 
 URL_VOOS = "http://172.28.1.1:5000/gravar/"
 
