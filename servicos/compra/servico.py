@@ -34,29 +34,38 @@ def get_info():
 
 @servico.route("/compra/", methods=["POST", "GET"])
 def comprar_passagem():
+    # pega o voo escolhido pelo cliente
     voo_escolhido = request.get_json()
-   
+    
+    # busca os voos disponiveis
     client = base.Client((BANCO_VOLATIL, 11211))
 
     voos = client.get("voos")
     voos = voos.decode("utf-8")
     voos = json.loads(voos)
 
-    reduzir_vaga_no_voo(voos, voo_escolhido)
+    # escolher o voo e comprar a passagem se existir e atualizar info do voo
+    resposta = escolher_voo(voos, voo_escolhido)
 
-    return "ok"
+    return resposta
 
-def reduzir_vaga_no_voo(voos, voo_escolhido):
+def escolher_voo(voos, voo_escolhido):
+    resposta = "voo nao encontrado"
+
     voo_escolhido = json.loads(voo_escolhido)
+
+    # verifica se o voo existe
     for voo in voos['voos']:
         if voo['id'] == voo_escolhido['id']:
             print(voo, flush=True)
             voo['passagens_vendidas'] += 1
+            resposta = "ok"
 
+    # salva a relação de voos atualizada com a passagem vendida               
     client = base.Client((BANCO_VOLATIL, 11211))
     client.set("voos", json.dumps(voos))
 
-
+    return resposta
 
 if __name__ == "__main__":
     servico.run(
