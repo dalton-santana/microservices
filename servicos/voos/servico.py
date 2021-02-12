@@ -8,7 +8,7 @@ BANCO_VOLATIL = "banco_volatil"
 # "constantes"
 IS_ALIVE = "yes"
 VERSION = "0.0.1"
-DESCRIPTION = "Servico que retorna voos"
+DESCRIPTION = "Servico que retorna todos os voos"
 AUTHOR = "Dalton"
 EMAIL = "dalton_jss@hotmail.com"
 
@@ -31,6 +31,7 @@ def get_info():
 
     return info
 
+# rota que grava a lista de voos inicial
 @servico.route("/gravar/", methods=["POST", "GET"])
 def gravar():
     voos = request.get_json()
@@ -40,7 +41,7 @@ def gravar():
 
     return "Ok"
 
-# rota que retorna voos sobre jogos eletronicos
+# rota que retorna todos os voos
 @servico.route("/voos/")
 def get_voos():
     resultado = "erro: voos não adicionados"

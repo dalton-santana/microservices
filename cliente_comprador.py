@@ -14,7 +14,6 @@ VOOS = VOOS_URL_SERVICO + "voos/"
 COMPRA_DE_PASSAGEM = COMPRA_DE_PASSAGEM_URL_SERVICO + "compra/"
 
 def acessar(url):
-    print("\n")
     print("acessando a url:", url)
 
     response = urllib.request.urlopen(url)
@@ -31,6 +30,16 @@ def voos_is_alive():
 
     return alive
 
+
+def compra_is_alive():
+    alive = False
+
+    if acessar(COMPRA_DE_PASSAGEM_IS_ALIVE) == "yes":
+        alive = True
+
+    return alive
+
+
 def buscar_voos():
     data = acessar(VOOS)
     data = json.loads(data)
@@ -38,6 +47,7 @@ def buscar_voos():
     return data["voos"]
 
 def comprar_passagem(url, voo):
+    print("acessando a url:", url)
     resposta = requests.post(url, json=json.dumps(voo))
     if resposta.ok:
         print("Passagem comprada")
@@ -47,27 +57,27 @@ def comprar_passagem(url, voo):
 
 if __name__ == "__main__":
     while True:
-        # verificar se o servico de voos estah ativo
+        # se estiver ativo
+        print("#################### NOVA COMPRA DE PASSAGEM ########################")
+        # verificar se o servico de voos esta ativo
         if voos_is_alive():
-            # se estiver ativo
-            print("\n\n")
-
-            print("###############################################################")
-            print("#################### NOVA COMPRA DE PASSAGEM ########################")
-            print("###############################################################")
 
             # buscar os voos disponíveis
             print("serviço de voos está ativo. Solicitando voos...")
             voos = buscar_voos()
 
-            # escolhe um voo
+            # escolhendo um voo
             voo_escolhido = voos[0]
             
             # compra uma passagem
-            comprar_passagem(COMPRA_DE_PASSAGEM, voo_escolhido)
+            if compra_is_alive():
+                print("serviço de compra está ativo. Realizando compra...")
+                comprar_passagem(COMPRA_DE_PASSAGEM, voo_escolhido)
+            else:
+                print("serviço de compra está inativo!...")
 
-        # se nao estiver (ativo) informar que o servico estah inativo
+        # se nao estiver (ativo) informar que o servico esta inativo
         else:
-            print("serviço de compras de voos não está ativo!")
+            print("serviço de voos stá inativo!")
 
         time.sleep(5)

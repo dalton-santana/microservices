@@ -61,7 +61,7 @@ def escolher_voo(voos, voo_escolhido):
             voo['passagens_vendidas'] += 1
             resposta = "ok"
 
-    # salva a relação de voos atualizada com a passagem vendida               
+    # salva a relação de voos atualizada com a passagem vendida ou a lista anterior sem venda              
     client = base.Client((BANCO_VOLATIL, 11211))
     client.set("voos", json.dumps(voos))
 
