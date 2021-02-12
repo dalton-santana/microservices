@@ -122,4 +122,4 @@ if __name__ == "__main__":
         else:
             print("serviço de voos stá inativo!")
 
-        time.sleep(1)
+        time.sleep(2)
