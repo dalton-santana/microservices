@@ -38,11 +38,12 @@ def buscar_voos():
     return data["voos"]
 
 def comprar_passagem(url, voo):
-    resposta = requests.post(url, data=voo)
+    resposta = requests.post(url, json=json.dumps(voo))
     if resposta.ok:
         print("Passagem comprada")
+        print(resposta.content.decode("utf-8"))
     else:
-        print(resposta)
+        print(resposta.content.decode("utf-8"))
 
 if __name__ == "__main__":
     while True:
@@ -69,4 +70,4 @@ if __name__ == "__main__":
         else:
             print("serviço de compras de voos não está ativo!")
 
-        time.sleep(10)
+        time.sleep(5)
