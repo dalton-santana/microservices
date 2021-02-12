@@ -33,15 +33,12 @@ def get_info():
 
 @servico.route("/compra/", methods=["POST", "GET"])
 def comprar_passagem():
-    ticket = request.get_json()
-    print(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
-    print(request)
-    if ticket:
-        print(ticket)
-        ##client = base.Client((BANCO_VOLATIL, 11211))
-        ##client.set("voos", voos)
+    voo = request.get_json()
+   
+    client = base.Client((BANCO_VOLATIL, 11211))
+    client.add("passagem", voo)
 
-    return ticket
+    return "ok"
 
 if __name__ == "__main__":
     servico.run(

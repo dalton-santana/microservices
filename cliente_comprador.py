@@ -38,7 +38,6 @@ def buscar_voos():
     return data["voos"]
 
 def comprar_passagem(url, voo):
-    print(">>>>> ", json.dumps(voo))
     resposta = requests.post(url, data=voo)
     if resposta.ok:
         print("Passagem comprada")
