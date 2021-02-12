@@ -33,8 +33,10 @@ def imprimir_voos(voos):
         print("Data: ", VOO["data"])
         print("De: ", VOO["saida"])
         print("Para: ", VOO["chegada"])
-        print("Vagas: ", VOO["vagas"])
         print("Preço R$: ", VOO["preco"])
+        print("Vagas: ", VOO["vagas"])
+        print("Passagens Vendidas: ", VOO["passagens_vendidas"])
+        print("Check in: ", VOO["check_in"])
         
 
 def buscar_voos():

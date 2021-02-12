@@ -34,7 +34,7 @@ def get_info():
 
 @servico.route("/compra/", methods=["POST", "GET"])
 def comprar_passagem():
-    voo = request.get_json()
+    voo_escolhido = request.get_json()
    
     client = base.Client((BANCO_VOLATIL, 11211))
 
@@ -42,18 +42,21 @@ def comprar_passagem():
     voos = voos.decode("utf-8")
     voos = json.loads(voos)
 
-    reduzir_vaga_no_voo(voos, voo, client)
+    reduzir_vaga_no_voo(voos, voo_escolhido)
 
     return "ok"
 
-def reduzir_vaga_no_voo(voos, voo_escolhido, client):
+def reduzir_vaga_no_voo(voos, voo_escolhido):
     voo_escolhido = json.loads(voo_escolhido)
     for voo in voos['voos']:
         if voo['id'] == voo_escolhido['id']:
             print(voo, flush=True)
-            voo['vagas'] -= 1
+            voo['passagens_vendidas'] += 1
 
+    client = base.Client((BANCO_VOLATIL, 11211))
     client.set("voos", json.dumps(voos))
+
+
 
 if __name__ == "__main__":
     servico.run(

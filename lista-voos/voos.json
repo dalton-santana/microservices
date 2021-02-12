@@ -6,6 +6,8 @@
             "saida": "RIO DE JANEIRO - RJ",
             "chegada": "SÃO PAULO - SP",
             "vagas": 30,
+            "passagens_vendidas": 0,
+            "check_in": 0,
             "preco": 100
         },
         {
@@ -14,6 +16,8 @@
             "saida": "SALVADOR - BA",
             "chegada": "SÃO PAULO - SP",
             "vagas": 40,
+            "passagens_vendidas": 0,
+            "check_in": 0,
             "preco": 120
         },
         {
@@ -22,6 +26,8 @@
             "saida": "RECIFE - PE",
             "chegada": "SALVADOR- BA",
             "vagas": 33,
+            "passagens_vendidas": 0,
+            "check_in": 0,
             "preco": 40
         }
 
