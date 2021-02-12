@@ -50,13 +50,13 @@ def comprar_passagem(url, voo):
     print("acessando a url:", url)
     resposta = requests.post(url, json=json.dumps(voo))
     if resposta.ok:
-        print("Passagem comprada")
-        print(resposta.content.decode("utf-8"))
+        print(">>>> Passagem comprada!")
     else:
         print(resposta.content.decode("utf-8"))
 
 if __name__ == "__main__":
     while True:
+        print("\n")
         # se estiver ativo
         print("#################### NOVA COMPRA DE PASSAGEM ########################")
         # verificar se o servico de voos esta ativo
