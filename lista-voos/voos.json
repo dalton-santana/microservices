@@ -1,7 +1,7 @@
 {
     "voos": [
         {
-            "id": "1",
+            "id": 1,
             "data": "20/02/2021",
             "saida": "RIO DE JANEIRO - RJ",
             "chegada": "SÃO PAULO - SP",
@@ -11,7 +11,7 @@
             "preco": 100
         },
         {
-            "id": "2",
+            "id": 2,
             "data": "21/02/2021",
             "saida": "SALVADOR - BA",
             "chegada": "SÃO PAULO - SP",
@@ -21,7 +21,7 @@
             "preco": 120
         },
         {
-            "id": "3",
+            "id": 3,
             "data": "18/02/2021",
             "saida": "RECIFE - PE",
             "chegada": "SALVADOR- BA",

@@ -87,7 +87,7 @@ if __name__ == "__main__":
             voos = buscar_voos()
 
             # escolhendo um voo aleatório para compra
-            voo_aletorio = random.randrange(0, len(voos) - 1)
+            voo_aletorio = random.randrange(0, len(voos))
             voo_escolhido = voos[voo_aletorio]
             
             print("\n")
@@ -104,7 +104,7 @@ if __name__ == "__main__":
 
 
             # escolhendo um voo aleatório para realizar checkin
-            voo_aletorio = random.randrange(0, len(voos) - 1)
+            voo_aletorio = random.randrange(0, len(voos))
             voo_escolhido = voos[voo_aletorio]
             
             print("\n")
