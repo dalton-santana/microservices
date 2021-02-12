@@ -24,6 +24,19 @@ services:
     networks:
       mynet:
         ipv4_address: "172.28.1.2"
+  
+  checkin:
+    image: imagevoos
+    build: .
+    volumes:
+      - "./servicos/checkin:/servicos"
+    command: python3 servico.py
+    expose:
+      - "5000"
+    networks:
+      mynet:
+        ipv4_address: "172.28.1.3"
+
 
   banco_volatil:
     image: memcached

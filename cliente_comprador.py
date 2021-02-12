@@ -6,12 +6,15 @@ import requests
 # rotas do servico de voos (voos)
 VOOS_URL_SERVICO = "http://172.28.1.1:5000/"
 COMPRA_DE_PASSAGEM_URL_SERVICO = "http://172.28.1.2:5000/"
+CHECK_IN_URL_SERVICO = "http://172.28.1.3:5000/"
 
 VOOS_IS_ALIVE = VOOS_URL_SERVICO + "isalive/"
 COMPRA_DE_PASSAGEM_IS_ALIVE = COMPRA_DE_PASSAGEM_URL_SERVICO + "isalive/"
+CHECK_IN_IS_ALIVE = COMPRA_DE_PASSAGEM_URL_SERVICO + "isalive/"
 
 VOOS = VOOS_URL_SERVICO + "voos/"
 COMPRA_DE_PASSAGEM = COMPRA_DE_PASSAGEM_URL_SERVICO + "compra/"
+CHECK_IN = CHECK_IN_URL_SERVICO + "checkin/"
 
 def acessar(url):
     print("acessando a url:", url)
@@ -54,6 +57,14 @@ def comprar_passagem(url, voo):
     else:
         print(resposta.content.decode("utf-8"))
 
+def realizar_check_in(url, voo):
+    print("acessando a url:", url)
+    resposta = requests.post(url, json=json.dumps(voo))
+    if resposta.ok:
+        print(">>>> Check-in realizado!")
+    else:
+        print(resposta.content.decode("utf-8"))
+
 if __name__ == "__main__":
     while True:
         print("\n")
@@ -73,6 +84,7 @@ if __name__ == "__main__":
             if compra_is_alive():
                 print("serviço de compra está ativo. Realizando compra...")
                 comprar_passagem(COMPRA_DE_PASSAGEM, voo_escolhido)
+                realizar_check_in(CHECK_IN, voo_escolhido)
             else:
                 print("serviço de compra está inativo!...")
 
