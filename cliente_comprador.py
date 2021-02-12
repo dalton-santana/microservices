@@ -11,7 +11,7 @@ CHECK_IN_URL_SERVICO = "http://172.28.1.3:5000/"
 
 VOOS_IS_ALIVE = VOOS_URL_SERVICO + "isalive/"
 COMPRA_DE_PASSAGEM_IS_ALIVE = COMPRA_DE_PASSAGEM_URL_SERVICO + "isalive/"
-CHECK_IN_IS_ALIVE = COMPRA_DE_PASSAGEM_URL_SERVICO + "isalive/"
+CHECK_IN_IS_ALIVE = CHECK_IN_URL_SERVICO + "isalive/"
 
 VOOS = VOOS_URL_SERVICO + "voos/"
 COMPRA_DE_PASSAGEM = COMPRA_DE_PASSAGEM_URL_SERVICO + "compra/"
@@ -76,27 +76,29 @@ def realizar_check_in(url, voo):
 
 if __name__ == "__main__":
     while True:
-        
+        print("\n")
         # verificar se o servico de voos esta ativo
         if voos_is_alive():
             # se estiver ativo
-
             print("\n")
-            print("#################### NOVA COMPRA DE PASSAGEM ########################")
-            
+            print("#################### BUSCANDO VOOS ########################")
+           
             # buscar os voos disponíveis
-            print("serviço de voos está ativo. Solicitando voos...")
             voos = buscar_voos()
 
             # escolhendo um voo aleatório para compra
             voo_aletorio = random.randrange(0, len(voos) - 1)
             voo_escolhido = voos[voo_aletorio]
             
+            print("\n")
+
             # compra uma passagem
             if compra_is_alive():
+                print("\n")
+                print("#################### NOVA COMPRA DE PASSAGEM ########################")
+            
                 print("serviço de compra está ativo. Realizando compra...")
                 comprar_passagem(COMPRA_DE_PASSAGEM, voo_escolhido)
-                realizar_check_in(CHECK_IN, voo_escolhido)
             else:
                 print("serviço de compra está inativo!...")
 
@@ -105,8 +107,12 @@ if __name__ == "__main__":
             voo_aletorio = random.randrange(0, len(voos) - 1)
             voo_escolhido = voos[voo_aletorio]
             
+            print("\n")
+            
             # realizar um checkin
             if checkin_is_alive():
+                print("\n")
+                print("#################### NOVO CHECKIN ########################")
                 realizar_check_in(CHECK_IN, voo_escolhido)
             else:
                 print("serviço de checkin está inativo!...")

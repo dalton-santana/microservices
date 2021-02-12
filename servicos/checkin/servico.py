@@ -7,7 +7,7 @@ servico = Flask(__name__)
 BANCO_VOLATIL = "banco_volatil"
 
 # "constantes"
-IS_ALIVE = "yes"
+IS_ALIVE = "no"
 VERSION = "0.0.1"
 DESCRIPTION = "Servico que realiza checkin de passagens"
 AUTHOR = "Dalton"
