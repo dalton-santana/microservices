@@ -1,5 +1,6 @@
 from flask import Flask, jsonify, request
 from pymemcache.client import base
+import json
 
 servico = Flask(__name__)
 
@@ -33,15 +34,26 @@ def get_info():
 
 @servico.route("/compra/", methods=["POST", "GET"])
 def comprar_passagem():
-    ticket = request.get_json()
-    print(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
-    print(request)
-    if ticket:
-        print(ticket)
-        ##client = base.Client((BANCO_VOLATIL, 11211))
-        ##client.set("voos", voos)
+    voo = request.get_json()
+   
+    client = base.Client((BANCO_VOLATIL, 11211))
 
-    return ticket
+    voos = client.get("voos")
+    voos = voos.decode("utf-8")
+    voos = json.loads(voos)
+
+    reduzir_vaga_no_voo(voos, voo, client)
+
+    return "ok"
+
+def reduzir_vaga_no_voo(voos, voo_escolhido, client):
+    voo_escolhido = json.loads(voo_escolhido)
+    for voo in voos['voos']:
+        if voo['id'] == voo_escolhido['id']:
+            print(voo, flush=True)
+            voo['vagas'] -= 1
+
+    client.set("voos", json.dumps(voos))
 
 if __name__ == "__main__":
     servico.run(
