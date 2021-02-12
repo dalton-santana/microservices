@@ -32,7 +32,7 @@ def get_info():
 
     return info
 
-@servico.route("/checkin/", methods=["POST", "GET"])
+@servico.route("/checkin/", methods=["POST"])
 def realizar_check_in():
     # pega o voo escolhido pelo cliente
     voo_escolhido = request.get_json()
@@ -56,8 +56,7 @@ def escolher_voo(voos, voo_escolhido):
 
     # verifica se o voo existe
     for voo in voos['voos']:
-        if voo['id'] == voo_escolhido['id']:
-            print(voo, flush=True)
+        if voo['id'] == voo_escolhido['id'] and int(voo['check_in']) < int(voo['passagens_vendidas']):
             voo['check_in'] += 1
             resposta = "ok"
 

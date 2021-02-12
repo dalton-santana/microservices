@@ -32,7 +32,7 @@ def get_info():
 
     return info
 
-@servico.route("/compra/", methods=["POST", "GET"])
+@servico.route("/compra/", methods=["POST"])
 def comprar_passagem():
     # pega o voo escolhido pelo cliente
     voo_escolhido = request.get_json()
@@ -56,8 +56,7 @@ def escolher_voo(voos, voo_escolhido):
 
     # verifica se o voo existe
     for voo in voos['voos']:
-        if voo['id'] == voo_escolhido['id']:
-            print(voo, flush=True)
+        if voo['id'] == voo_escolhido['id'] and voo['vagas'] != voo['passagens_vendidas']:
             voo['passagens_vendidas'] += 1
             resposta = "ok"
 
