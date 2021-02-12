@@ -2,6 +2,7 @@ import urllib.request
 import json
 import time
 import requests
+import random
 
 # rotas do servico de voos (voos)
 VOOS_URL_SERVICO = "http://172.28.1.1:5000/"
@@ -42,6 +43,14 @@ def compra_is_alive():
 
     return alive
 
+def checkin_is_alive():
+    alive = False
+
+    if acessar(CHECK_IN_IS_ALIVE) == "yes":
+        alive = True
+
+    return alive
+
 
 def buscar_voos():
     data = acessar(VOOS)
@@ -67,18 +76,21 @@ def realizar_check_in(url, voo):
 
 if __name__ == "__main__":
     while True:
-        print("\n")
-        # se estiver ativo
-        print("#################### NOVA COMPRA DE PASSAGEM ########################")
+        
         # verificar se o servico de voos esta ativo
         if voos_is_alive():
+            # se estiver ativo
 
+            print("\n")
+            print("#################### NOVA COMPRA DE PASSAGEM ########################")
+            
             # buscar os voos disponíveis
             print("serviço de voos está ativo. Solicitando voos...")
             voos = buscar_voos()
 
-            # escolhendo um voo
-            voo_escolhido = voos[0]
+            # escolhendo um voo aleatório para compra
+            voo_aletorio = random.randrange(0, len(voos) - 1)
+            voo_escolhido = voos[voo_aletorio]
             
             # compra uma passagem
             if compra_is_alive():
@@ -87,6 +99,18 @@ if __name__ == "__main__":
                 realizar_check_in(CHECK_IN, voo_escolhido)
             else:
                 print("serviço de compra está inativo!...")
+
+
+            # escolhendo um voo aleatório para realizar checkin
+            voo_aletorio = random.randrange(0, len(voos) - 1)
+            voo_escolhido = voos[voo_aletorio]
+            
+            # realizar um checkin
+            if checkin_is_alive():
+                realizar_check_in(CHECK_IN, voo_escolhido)
+            else:
+                print("serviço de checkin está inativo!...")
+            
 
         # se nao estiver (ativo) informar que o servico esta inativo
         else:
