@@ -8,7 +8,7 @@ BANCO_VOLATIL = "banco_volatil"
 # "constantes"
 IS_ALIVE = "yes"
 VERSION = "0.0.1"
-DESCRIPTION = "Servico que retorna voos"
+DESCRIPTION = "Servico que realiza compras de passagens"
 AUTHOR = "Dalton"
 EMAIL = "dalton_jss@hotmail.com"
 
@@ -31,26 +31,17 @@ def get_info():
 
     return info
 
-@servico.route("/gravar/", methods=["POST", "GET"])
-def gravar():
-    voos = request.get_json()
-    if voos:
-        client = base.Client((BANCO_VOLATIL, 11211))
-        client.set("voos", voos)
+@servico.route("/compra/", methods=["POST", "GET"])
+def comprar_passagem():
+    ticket = request.get_json()
+    print(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
+    print(request)
+    if ticket:
+        print(ticket)
+        ##client = base.Client((BANCO_VOLATIL, 11211))
+        ##client.set("voos", voos)
 
-    return "Ok"
-
-# rota que retorna voos sobre jogos eletronicos
-@servico.route("/voos/")
-def get_voos():
-    resultado = "erro: voos não adicionados"
-
-    client = base.Client((BANCO_VOLATIL, 11211))
-    voos = client.get("voos")
-    if voos:
-        resultado = voos
-
-    return resultado
+    return ticket
 
 if __name__ == "__main__":
     servico.run(

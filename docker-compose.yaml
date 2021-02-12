@@ -13,6 +13,18 @@ services:
       mynet:
         ipv4_address: "172.28.1.1"
 
+  compra:
+    image: imagevoos
+    build: .
+    volumes:
+      - "./servicos/compra:/servicos"
+    command: python3 servico.py
+    expose:
+      - "5000"
+    networks:
+      mynet:
+        ipv4_address: "172.28.1.2"
+
   banco_volatil:
     image: memcached
     hostname: banco_volatil
